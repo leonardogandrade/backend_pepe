@@ -1,0 +1,43 @@
+Descrição:
+
+Sistema de acompanhamento de carbon footprint onde teremos que cadastrar as emissoes de carbono informadas pelos provedores de cloud
+Azure, AWS, GCP.
+
+Modulos: 
+
+BACKEND
+
+** Configurar servidor
+
+- Usuario
+    - Cadastro de usuários 
+            {
+                "email": "pepe@gb.com.br", // obrigatorio
+                "password": "123456", // obrigatorio
+                "name": "Grabriel Pepe", // obrigatorio
+                "VS": "IAC",
+                "project": "finopping"
+            }
+    - Listagem de todos os usuários
+    - Pesquisa por nome de usuário
+    - Pesquisa pelo ID do usuário
+    
+- Consulta em APIs dos provefores de cloud
+    - Azure
+    - AWS
+    - Google
+
+- Persistir dados dos provedores em banco de dados MongoDB
+
+FRONTEND
+
+- Tela de login
+- Dashboard de indicadores
+- Gráficos de indicadores
+- Pesquisa de métricas de emissões de carbono
+
+
+------------------------------------------------------------------------
+
+arquivo.ts [servidor] -> [listen]{PORT} -> [rotas]{GET, POST}
+
