@@ -1,11 +1,12 @@
 import {
   FastifyInstance,
-  FastifyReply,
-  FastifyRequest,
   FastifyPluginOptions,
 } from "fastify";
 import { createUser, deleteUser, getUserByID, getUserByName, listUsers, updateUser } from "./controllers/user-controller";
 import { schema } from "./validators/user-validator";
+import { userIdSchema } from "./validators/userId-validator";
+import { userPutSchema } from "./validators/userPut-validator";
+import { userNameSchema } from "./validators/userName-validator";
 
 const router = async (
   fastify: FastifyInstance,
@@ -15,12 +16,13 @@ const router = async (
 
   fastify.post("/user", { schema }, createUser);
 
-  fastify.get("/user/:id", getUserByID);
-  fastify.get("/user/name/:name", getUserByName);
+  fastify.get("/user/:id", userIdSchema, getUserByID);
+  
+  fastify.get("/user/name/:name", userNameSchema,getUserByName);
 
-  fastify.delete("/user/:id", deleteUser);
+  fastify.delete("/user/:id", userIdSchema, deleteUser);
 
-  fastify.put('/user/:id', updateUser)
+  fastify.put('/user/:id', userPutSchema, updateUser)
 };
 
 export default router;

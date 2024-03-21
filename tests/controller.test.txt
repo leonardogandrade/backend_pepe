@@ -1,0 +1,15 @@
+// import { updateUser } from "../src/controllers/user-controller"
+
+// test('Testa update válido de usuário', ()=>{
+//     const data = await updateUser(request, reply);
+//     expect(data).toBe(something)
+// })
+
+// test('Update falha com senha', ()=>{
+//     expect.assertions(1);
+//     try {
+//         await updateUser(request: senhacurta, reply);
+//     } catch (error) {
+//         expect(error).toMatch('erroDeSenha');
+//     }
+// })

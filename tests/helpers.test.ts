@@ -1,5 +1,11 @@
-import  passwordHelper  from "../src/helpers/string-helper";
+import { passwordHelper, emailHelper } from "../src/helpers/string-helper";
 
-test('testa senha', ()=>{
-    expect(passwordHelper('12345')).toBe(true)
+test('validar senha', ()=>{
+    expect(passwordHelper('1234567')).toBe(true)
 })
+
+test('validar email', ()=>{
+    expect(emailHelper('email@dominio.com')).toBe(true)
+})
+
+

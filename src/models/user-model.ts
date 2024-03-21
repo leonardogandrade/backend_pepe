@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   password: {type: String, required: true},
   vs: {type: String},
   project: {type: String},
+  cargo: {type: String}
 })
 
 export const User = mongoose.model('User', userSchema, 'collection')
