@@ -10,7 +10,8 @@ export const userPutSchema: RouteShorthandOptions = {
                 password: { type: 'string' },
                 vs: {type: 'string' },
                 project: { type: 'string' },
-                cargo: {type: 'string'}
+                cargo: {type: 'string'},
+                birthday: { type: 'string'}
             },
             additionalProperties: false,
         },

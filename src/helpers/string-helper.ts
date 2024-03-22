@@ -17,3 +17,5 @@ export const emailHelper = (email: string): boolean =>{
     }
     return true;
 }
+
+export const nameHelper = (name: string) => (name.length < 30);

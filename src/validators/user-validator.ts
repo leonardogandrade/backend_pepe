@@ -5,6 +5,10 @@ const bodyJsonSchema = {
     name: { type: "string" },
     email: { type: "string" },
     password: { type: "string" },
+    vs: {type: "string"},
+    project: {type: "string"},
+    cargo: {type: "string"},
+    birthday: {type: "string"}
   },
 };
 

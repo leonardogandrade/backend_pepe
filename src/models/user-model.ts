@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
   password: {type: String, required: true},
   vs: {type: String},
   project: {type: String},
-  cargo: {type: String}
+  cargo: {type: String},
+  birthday: {type: String}
 })
 
 export const User = mongoose.model('User', userSchema, 'collection')
