@@ -9,7 +9,7 @@ import { userPutSchema } from "./validators/userPut-validator";
 import { userNameSchema } from "./validators/userName-validator";
 
 const router = async (
-  fastify: FastifyInstance,
+  fastify: FastifyInstance, // how its this instace passed 
   options: FastifyPluginOptions
 ) => {
   fastify.get("/user", listUsers);

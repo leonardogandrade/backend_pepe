@@ -1,7 +1,9 @@
+import { FastifyInstance } from "fastify";
 import ConnectDB from "./db/conn";
 import createServer from "./server";
 
 const port = 4011;
+
 const app = createServer()
 
 ConnectDB()
@@ -12,3 +14,5 @@ app.listen({ port }, (error) => {
     process.exit(1);
   }
 });
+
+export default app;

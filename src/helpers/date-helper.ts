@@ -9,5 +9,5 @@ export function birthHelper(birthday: string){
         
         return date>newBirthday
     }
-    return false
+    return true
 }

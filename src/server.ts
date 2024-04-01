@@ -1,4 +1,4 @@
-import Fastify from "fastify";
+import Fastify, { FastifyInstance } from "fastify";
 import router from "./routes";
 
 const createServer = () => {
@@ -8,4 +8,4 @@ const createServer = () => {
   return server;
 }
 
-export = createServer;
+export default createServer;
