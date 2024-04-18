@@ -20,10 +20,9 @@
 // //////////////////////////////////////////////////
 // //////////////////////////////////////////////////
 
-import mongoose from 'mongoose'
 import createServer from '../src/server'
 import supertest from 'supertest'
-import User from '../src/models/user-model'
+import User from '../src/models/UserModel'
 
 const app = createServer()
 
@@ -52,6 +51,9 @@ beforeAll(()=>{
       email: 'john@test.com',
       password: 'jhonpassword'
     });
+
+    jest.spyOn(User, 'findByIdAndDelete').mockResolvedValue({})
+
 })
 
 afterAll(()=> app.close)
@@ -66,7 +68,7 @@ describe('GET users', () => {
   })
 
   it('should return a user by name', async() => {
-    const response: any = await app.inject({
+    const response = await app.inject({
       method: 'GET',
       url:'/user/name/john'
     })
@@ -126,6 +128,12 @@ describe('PUT user with/wo ID', () => {
     expect(response.body['id']).toEqual('id1234')
     expect(spy).toHaveBeenCalledTimes(1)
   })
+})
+
+describe('Tests the delete by Id', async()=>{
+  const response = await supertest(app.server).delete('/user/id1234')
+
+  expect(response.body.Id).toBe(undefined)
 })
 
 

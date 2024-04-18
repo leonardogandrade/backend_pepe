@@ -1,8 +1,7 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import  User from "../models/user-model";
+import  User from "../models/UserModel";
 import { emailHelper, nameHelper, passwordHelper } from "../helpers/string-helper";
 import { birthHelper } from "../helpers/date-helper";
-import mongoose from "mongoose";
 
 
 export const createUser = async (
@@ -16,10 +15,10 @@ export const createUser = async (
         passwordHelper(password) ? (
           birthHelper(birthday) ? (
             reply.send(await user.save())
-          ) : reply.status(500).send('Informe uma data válida')
-        ) : reply.status(500).send('Senha menor de 6 digitos')
-      ) : reply.status(500).send('Padrão incorreto de e-mail')
-    ) : reply.status(500).send('Nome deve ser conter menos de 30 caracteres')
+          ) : reply.status(400).send('Informe uma data válida')
+        ) : reply.status(400).send('Senha menor de 6 digitos')
+      ) : reply.status(400).send('Padrão incorreto de e-mail')
+    ) : reply.status(400).send('Nome deve ser conter menos de 30 caracteres')
   };
   
 export const listUsers = async (
@@ -30,10 +29,7 @@ export const listUsers = async (
   
   const users = await User.find(); // nesse ponto eu devo retornar um array de usuários (que vai ter propriedade id)
   reply.send(users)
-
   
-  // pra dar certo o test:
-  // reply.send({ok: true})
 };
 
 export const getUserByID = async (
@@ -53,7 +49,7 @@ export const getUserByName= async (
    const {name}: any = request.params
    console.log(name);
 
-   nameHelper(name) ? reply.send(await User.find(name)) : reply.status(500).send('Nome deve ser conter menos de 30 caracteres')
+   nameHelper(name) ? reply.send(await User.find(name)) : reply.status(400).send('Nome deve ser conter menos de 30 caracteres')
 };
 
 export const deleteUser = async (
@@ -64,6 +60,8 @@ export const deleteUser = async (
   const user = await User.findByIdAndDelete(id);
   reply.send(user)
 };
+
+
 
 export const updateUser = async (
   request: FastifyRequest, 
@@ -79,7 +77,7 @@ export const updateUser = async (
             reply.send(await User.findByIdAndUpdate(id, body, {
             new: true
           }))
-        ) : reply.status(500).send('Informe uma data válida')
-      ) : reply.status(500).send('Senha menor de 6 digitos')
-    ) : reply.status(500).send('Padrão incorreto de e-mail')
+        ) : reply.status(400).send('Informe uma data válida')
+      ) : reply.status(400).send('Senha menor de 6 digitos')
+    ) : reply.status(400).send('Padrão incorreto de e-mail')
 };

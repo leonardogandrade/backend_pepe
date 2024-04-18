@@ -2,13 +2,13 @@ import {
   FastifyInstance,
   FastifyPluginOptions,
 } from "fastify";
-import { createUser, deleteUser, getUserByID, getUserByName, listUsers, updateUser } from "./controllers/user-controller";
-import { schema } from "./validators/user-validator";
-import { userIdSchema } from "./validators/userId-validator";
-import { userPutSchema } from "./validators/userPut-validator";
-import { userNameSchema } from "./validators/userName-validator";
+import { createUser, deleteUser, getUserByID, getUserByName, listUsers, updateUser } from "../controllers/userController";
+import { schema } from "../validators/userValidators/user-validator";
+import { userIdSchema } from "../validators/userValidators/userId-validator";
+import { userPutSchema } from "../validators/userValidators/userPut-validator";
+import { userNameSchema } from "../validators/userValidators/userName-validator";
 
-const router = async (
+const userRoutes = async (
   fastify: FastifyInstance, // how its this instace passed 
   options: FastifyPluginOptions
 ) => {
@@ -25,4 +25,4 @@ const router = async (
   fastify.put('/user/:id', userPutSchema, updateUser)
 };
 
-export default router;
+export default userRoutes;

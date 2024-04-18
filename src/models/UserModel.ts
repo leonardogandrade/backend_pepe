@@ -10,7 +10,7 @@ export const userSchema = new mongoose.Schema({
   birthday: {type: String}
 })
 
-const User: any = mongoose.model('User', userSchema, 'collection')
+const User: any = mongoose.model('User', userSchema, 'UsersCollection')
 // console.log(User);
 
 export default User;
