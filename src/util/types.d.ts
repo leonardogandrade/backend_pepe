@@ -21,3 +21,10 @@ interface BodyInsertGcpEmission {
     "nr_versao_modelo": number,
     "vlr_total_carbon_footprint_localizacao": number,
 }
+
+interface QueryStringAwsEmissions {
+    startDate: string,
+    endDate: string,
+    paceProductCode: string,
+    regionCode: string,
+}

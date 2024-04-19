@@ -1,4 +1,4 @@
-import { birthHelper } from "../src/helpers/date-helper";
+import { birthHelper } from "../src/helpers/birthday-helper";
 import { passwordHelper, emailHelper, nameHelper } from "../src/helpers/string-helper";
 
 test('validar senha', ()=>{

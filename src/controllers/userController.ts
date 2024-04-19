@@ -1,7 +1,7 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import  User from "../models/UserModel";
 import { emailHelper, nameHelper, passwordHelper } from "../helpers/string-helper";
-import { birthHelper } from "../helpers/date-helper";
+import { birthHelper } from "../helpers/birthday-helper";
 
 
 export const createUser = async (
