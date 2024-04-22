@@ -45,7 +45,7 @@ beforeAll(()=>{
       name:"busca por id"
     })
 
-    jest.spyOn(User.prototype, 'save').mockResolvedValue({
+    jest.spyOn(User, 'create').mockResolvedValue({
       id:"id1234",
       name: 'john',
       email: 'john@test.com',
@@ -130,10 +130,12 @@ describe('PUT user with/wo ID', () => {
   })
 })
 
-describe('Tests the delete by Id', async()=>{
-  const response = await supertest(app.server).delete('/user/id1234')
-
-  expect(response.body.Id).toBe(undefined)
+describe('Tests the delete by Id', ()=>{
+  it('should return no ID', async ()=>{
+    const response = await supertest(app.server).delete('/user/id1234')
+  
+    expect(response.body.id).toBe(undefined)
+  })
 })
 
 

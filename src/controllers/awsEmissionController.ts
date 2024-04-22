@@ -27,6 +27,20 @@ export const listAwsEmissions = async(req: FastifyRequest, res: FastifyReply) =>
     res.send(emissions)
 }
 
+export const deleteAwsEmissions = async (req: FastifyRequest, res: FastifyReply) => {
+    const queryStrings = req.query as QueryStringAwsEmissions
+    const {startDate, endDate, paceProductCode, regionCode} = queryStrings
+    const awsSearchFields:any = {}
+
+    if(startDate && endDate){
+        awsSearchFields['startDate'] = { $gte: startDate, $lte: endDate}
+    }
+    paceProductCode && (awsSearchFields['paceProductCode'] = paceProductCode)
+    regionCode && (awsSearchFields['regionCode'] = regionCode)
+
+    res.send(await AwsEmission.deleteMany(awsSearchFields))
+}
+
 // export const getAwsEmissionsBetweenDates = async(req:FastifyRequest, res: FastifyReply) => {
 //     const queryStrings = req.query as QueryStringBetweenDates
 //     const {startDate, endDate} = queryStrings

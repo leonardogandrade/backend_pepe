@@ -3,6 +3,7 @@ import { GcpEmission } from "../models/GcpEmissionModel"
 
 
 export const listGcpEmissions = async(req:FastifyRequest, res: FastifyReply) => {
+    // ADICIONAR UM TOTAL !!
     const queryStrings = req.query as QueryStringsGcpEmissions
     const { startDate,
             endDate,
@@ -65,7 +66,7 @@ export const insertGcpEmission = async(req:FastifyRequest, res: FastifyReply) =>
 
 export const deleteGcpEmission = async(req:FastifyRequest, res:FastifyReply)=>{
     const queryStrings = req.query as QueryStringsGcpEmissions
-
+    
     const { startDate,
             endDate,
             nr_projeto,

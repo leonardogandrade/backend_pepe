@@ -2,6 +2,7 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import  User from "../models/UserModel";
 import { emailHelper, nameHelper, passwordHelper } from "../helpers/string-helper";
 import { birthHelper } from "../helpers/birthday-helper";
+import { helper } from "../helpers/functionHelper";
 
 
 export const createUser = async (
@@ -9,16 +10,28 @@ export const createUser = async (
   reply: FastifyReply
 ) => {
     const {name, password, email, vs, project, cargo, birthday}: any = request.body
-    const user = new User({name, password, email, vs, project, cargo, birthday});
-    nameHelper(name) ? (
-      emailHelper(email) ? (
-        passwordHelper(password) ? (
-          birthHelper(birthday) ? (
-            reply.send(await user.save())
-          ) : reply.status(400).send('Informe uma data válida')
-        ) : reply.status(400).send('Senha menor de 6 digitos')
-      ) : reply.status(400).send('Padrão incorreto de e-mail')
-    ) : reply.status(400).send('Nome deve ser conter menos de 30 caracteres')
+    // const user = new User({name, password, email, vs, project, cargo, birthday});
+
+    const status = helper
+    .reset()
+    .nameHelper(name)
+    .passwordHelper(password)
+    .emailHelper(email)
+    .birthHelper(birthday)
+    .check()
+
+    status ? (reply.status(400).send(status)) : reply.send(await User.create({name, password, email, vs, project, cargo, birthday}))
+    
+  //   nameHelper(name) ? (
+  //     emailHelper(email) ? (
+  //       passwordHelper(password) ? (
+  //         birthHelper(birthday) ? (
+  //           reply.send(await user.save())
+  //         ) : reply.status(400).send('Informe uma data válida')
+  //       ) : reply.status(400).send('Senha menor de 6 digitos')
+  //     ) : reply.status(400).send('Padrão incorreto de e-mail')
+  //   ) : reply.status(400).send('Nome deve ser conter menos de 30 caracteres')
+
   };
   
 export const listUsers = async (
@@ -47,7 +60,6 @@ export const getUserByName= async (
   reply: FastifyReply
 ) => {
    const {name}: any = request.params
-   console.log(name);
 
    nameHelper(name) ? reply.send(await User.find(name)) : reply.status(400).send('Nome deve ser conter menos de 30 caracteres')
 };
