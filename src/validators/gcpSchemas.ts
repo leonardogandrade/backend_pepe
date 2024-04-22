@@ -9,7 +9,7 @@ export const GcpInsertSchema: RouteShorthandOptions = {
         body:{
             type: 'object',
             properties: {
-                dt_uso: {type: 'string',},
+                dt_uso: {type: 'string'},
                 cod_conta_pagadora: { type: 'string' },
                 nr_projeto: { type: 'number' },
                 cod_projeto: { type: 'string' },

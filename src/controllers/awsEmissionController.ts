@@ -10,17 +10,19 @@ import { AwsEmission } from "../models/AwsEmissionsModel";
 export const listAwsEmissions = async(req: FastifyRequest, res: FastifyReply) => {
     const queryStrings = req.query as QueryStringAwsEmissions
     const {startDate, endDate, paceProductCode, regionCode} = queryStrings
-    const searchFields:any = {}
+    const awsSearchFields:any = {}
+
+    // Ajustar filtros para aceitar mais de um "servico", "regiao"
 
     if(startDate && endDate){
-        searchFields['startDate'] = { $gte: startDate, $lte: endDate}
+        awsSearchFields['startDate'] = { $gte: startDate, $lte: endDate}
     }
-    paceProductCode && (searchFields['paceProductCode'] = paceProductCode)
-    regionCode && (searchFields['regionCode'] = regionCode)
+    paceProductCode && (awsSearchFields['paceProductCode'] = paceProductCode)
+    regionCode && (awsSearchFields['regionCode'] = regionCode)
 
-    console.log(searchFields);
+    console.log(awsSearchFields);
     
-    const emissions = await AwsEmission.find(searchFields)
+    const emissions = await AwsEmission.find(awsSearchFields)
     
     res.send(emissions)
 }

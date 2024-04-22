@@ -14,7 +14,7 @@ interface BodyInsertGcpEmission {
     "cod_projeto": string,
     "des_localizacao": string,
     "des_servico": string,
-    "vlr_carbon_footprint_escopo1": 3.85245642614639e-7,
+    "vlr_carbon_footprint_escopo1": number,
     "des_regiao": string,
     "vlr_carbon_footprint_escopo3": number,
     "vlr_carbon_footprint_escopo2_localizacao": number,
@@ -27,4 +27,26 @@ interface QueryStringAwsEmissions {
     endDate: string,
     paceProductCode: string,
     regionCode: string,
+}
+
+interface QueryStringsGcpEmissions {
+    startDate: string,
+    endDate: string,
+    nr_projeto: number,
+    cod_projeto: string,
+    des_servico: string,
+    des_localizacao: string,
+    des_regiao: string,
+    nr_versao_modelo: number
+}
+
+interface gcpSearchFields {
+    dt_uso: {}, // { $gte: startDate, $lte: endDate} what's right?
+    nr_projeto: number,
+    cod_projeto: string,
+    des_servico: string,
+    des_localizacao: string,
+    des_regiao: string,
+    nr_versao_modelo: number
+
 }
